@@ -18,7 +18,7 @@ public class Book {
         this.Emprunteur=Emprunteur;
     }
 
-    public static void EditionBook(){
+    public void EditionBook(){
 
     }
 

@@ -56,17 +56,19 @@ public class Menu {
         switch (choix)
         {
             case 1:
-                library.AddBook();
+                library.addBook();
                 menuBooks();
                 break;
             case 2:
-                System.out.println("\t2-Supprimer un livre ");
+                library.deleteBook();
+                menuBooks();
                 break;
             case 3:
                 System.out.println("\t3-Modifier les informations d' un livre ");
                 break;
             case 4:
                 library.showBooks();
+                menuBooks();
                 break;
             case 5:
                 menuPrincipal();
@@ -81,16 +83,19 @@ public class Menu {
         switch (choix)
         {
             case 1:
-                System.out.println("\t1-Ajouter un apprenant ");
+                library.addStudent();
+                menuStudents();
                 break;
             case 2:
-                System.out.println("\t2-Supprimer un apprenant ");
+                library.deleteStudent();
+                menuStudents();
                 break;
             case 3:
                 System.out.println("\t3-Modifier les informations d' un apprenant ");
                 break;
             case 4:
-                System.out.println("\t4-Afficher les apprenants disponible  ");
+                library.showStudent();
+                menuStudents();
                 break;
             case 5:
                 menuPrincipal();

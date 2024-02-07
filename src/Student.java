@@ -7,16 +7,16 @@ public class Student {
     public int NumeroIdentification;
     public String Adresse;
 
-    public String mail;
+    public String Mail;
 
     public int Telephone;
 
-    public Student(String Nom,int NumeroIdentification,String Adresse,String mail,int Telephone)
+    public Student(String Nom,int NumeroIdentification,String Adresse,String Mail,int Telephone)
     {
         this.Nom=Nom;
         this.NumeroIdentification=NumeroIdentification;
         this.Adresse=Adresse;
-        this.mail=mail;
+        this.Mail=Mail;
         this.Telephone=Telephone;
     }
 
