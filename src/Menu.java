@@ -7,33 +7,38 @@ public class Menu {
     Library library = new Library();
 
     public void menuPrincipal(){
-        System.out.println("MENU DE BIBLIOTHEQUE :");
+        System.out.println("--------------------------MENU DE BIBLIOTHEQUE-------------------------- ");
         System.out.println("\t1-Livres ");
         System.out.println("\t2-Apprenants ");
+        System.out.println("-----------------------------------------------------------------------");
         System.out.print("CHOISISSEZ :  ");
         int choix = scanner.nextInt();
         choiceMenuprincipal(choix);
     }
 
     public void menuBooks() {
-        System.out.println("MENU DES LIVRES DU BIBLIOTHEQUE:");
+        System.out.println("--------------------------MENU DES LIVRES DU BIBLIOTHEQUE--------------------------");
         System.out.println("\t1-Ajouter un livre ");
         System.out.println("\t2-Supprimer un livre ");
         System.out.println("\t3-Modifier les informations d' un livre ");
         System.out.println("\t4-Afficher les livres disponible  ");
-        System.out.println("\t5-Retour au menu principal  ");
-        int choix = scanner.nextInt();
+        System.out.println("\t5-Chercher un livres ");
+        System.out.println("\t6-Retour au menu principal  ");
+        System.out.println("-----------------------------------------------------------------------------------");
+        System.out.print("CHOISISSEZ :  ");int choix = scanner.nextInt();
         choiceMenuBook(choix);
     }
 
     public void menuStudents(){
-        System.out.println("MENU DES APPRENANTS DU BIBLIOTHEQUE:");
+        System.out.println("--------------------------MENU DES APPRENANTS DU BIBLIOTHEQUE--------------------------");
         System.out.println("\t1-Ajouter un apprenant ");
         System.out.println("\t2-Supprimer un apprenant ");
         System.out.println("\t3-Modifier les informations d' un apprenant ");
         System.out.println("\t4-Afficher les apprenants disponible  ");
-        System.out.println("\t5-Retour au menu principal  ");
-        int choix = scanner.nextInt();
+        System.out.println("\t5-Chercher un apprenant");
+        System.out.println("\t6-Retour au menu principal  ");
+        System.out.println("----------------------------------------------------------------------------------------");
+        System.out.print("CHOISISSEZ :  ");int choix = scanner.nextInt();
         choiceMenuStudent(choix);
     }
 
@@ -64,13 +69,20 @@ public class Menu {
                 menuBooks();
                 break;
             case 3:
-                System.out.println("\t3-Modifier les informations d' un livre ");
+                Book book = library.findBook();
+                book.editionBook();
+                library.showBooks();
+                menuBooks();
                 break;
             case 4:
                 library.showBooks();
                 menuBooks();
                 break;
             case 5:
+                library.searchBook();
+                menuBooks();
+                break;
+            case 6:
                 menuPrincipal();
                 break;
             default:
@@ -91,13 +103,20 @@ public class Menu {
                 menuStudents();
                 break;
             case 3:
-                System.out.println("\t3-Modifier les informations d' un apprenant ");
+                Student student = library.findStudent();
+                student.editionStudent(student);
+                library.showStudent();
+                menuStudents();
                 break;
             case 4:
                 library.showStudent();
                 menuStudents();
                 break;
             case 5:
+                library.searchStudent();
+                menuStudents();
+                break;
+            case 6:
                 menuPrincipal();
                 break;
             default:
