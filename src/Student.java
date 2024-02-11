@@ -13,8 +13,21 @@ public class Student {
     public String Mail;
 
     public int Telephone;
+    private ArrayList<Book> BookBorrow = new ArrayList<>();
 
-    public Student(String Nom,int NumeroIdentification,String Adresse,String Mail,int Telephone)
+    public Student() {
+
+    }
+
+    public ArrayList<Book> getBookBorrow() {
+        return BookBorrow;
+    }
+
+    public void setBookBorrow(Book bookBorrow) {
+        this.BookBorrow.add(bookBorrow);
+    }
+
+    public Student(String Nom, int NumeroIdentification, String Adresse, String Mail, int Telephone)
     {
         this.Nom=Nom;
         this.NumeroIdentification=NumeroIdentification;
@@ -22,8 +35,6 @@ public class Student {
         this.Mail=Mail;
         this.Telephone=Telephone;
     }
-
-    ArrayList<Objects> BookBorrow = new ArrayList<>();
 
     public void editionStudent(Student student){
         int choix;

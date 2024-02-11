@@ -10,6 +10,7 @@ public class Menu {
         System.out.println("--------------------------MENU DE BIBLIOTHEQUE-------------------------- ");
         System.out.println("\t1-Livres ");
         System.out.println("\t2-Apprenants ");
+        System.out.println("\t3-Réserver un livre à un apprenant ");
         System.out.println("-----------------------------------------------------------------------");
         System.out.print("CHOISISSEZ :  ");
         int choix = scanner.nextInt();
@@ -36,7 +37,8 @@ public class Menu {
         System.out.println("\t3-Modifier les informations d' un apprenant ");
         System.out.println("\t4-Afficher les apprenants disponible  ");
         System.out.println("\t5-Chercher un apprenant");
-        System.out.println("\t6-Retour au menu principal  ");
+        System.out.println("\t6-Afficher les livres reserver pour un apprenant");
+        System.out.println("\t7-Retour au menu principal  ");
         System.out.println("----------------------------------------------------------------------------------------");
         System.out.print("CHOISISSEZ :  ");int choix = scanner.nextInt();
         choiceMenuStudent(choix);
@@ -50,6 +52,10 @@ public class Menu {
                 break;
             case 2:
                 menuStudents();
+                break;
+            case 3:
+                library.reserveBook();
+                menuPrincipal();
                 break;
             default:
                 System.out.println("\t Choix invalid !! ressayer .. ");
@@ -117,6 +123,10 @@ public class Menu {
                 menuStudents();
                 break;
             case 6:
+                library.listBookForStudent();
+                menuStudents();
+                break;
+            case 7:
                 menuPrincipal();
                 break;
             default:

@@ -14,11 +14,13 @@ public class Library {
 
     String Titre,Auteur,DatePublication,Nom,Adresse,Mail;
     int NumeroISBN,NumeroIdentification,Telephone;
-    Student emprunteur;
+
+    public ArrayList<Student> getStudents(){
+        return Students;
+    }
 
 
     public void addBook() {
-        boolean empruntdispo =false;
         System.out.println("Remplir les Information du livre que voulez-vous ajouter :");
         System.out.print("\tTitre :"); Titre = scanner.next();
         System.out.print("\tAuteur :"); Auteur = scanner.next();
@@ -31,47 +33,22 @@ public class Library {
         }
         System.out.print("\tDate de publication :"); DatePublication = scanner.next();
         LocalDate date = LocalDate.parse(DatePublication, dateFormatter);
-        System.out.print("\tNuméro d' identification d' emprunteur :");NumeroIdentification = scanner.nextInt();
-        for (Student student : Students) {
-            if (student.NumeroIdentification == NumeroIdentification){
-                emprunteur = student;
-                empruntdispo=true;
-            }
-        }
-        if(!empruntdispo)
-        {
-            System.out.println("\tNuméro d' identification indisponible !! Ressayer..");
-            System.out.print("\tNuméro d' identification d' emprunteur :");NumeroIdentification = scanner.nextInt();
-        }
         Book book = new Book(Titre,Auteur,NumeroISBN,date);
-        book.setEmprunteur(emprunteur);
         Books.add(book);
         System.out.println("Ajout effectuer avec succes");
     }
 
-    public void editEmprunt(Book book)
-    {
-        int numeroIdentification;
-        System.out.print("\tNuméro d' identification d' emprunteur :");numeroIdentification = scanner.nextInt();
-
-        for (Student student : Students) {
-            if (student.NumeroIdentification == numeroIdentification){
-                book.setEmprunteur(student);
-                break;
-            }
-        }
-    }
     public int deleteBook(){
         int ISBN;
         System.out.println("Entrer le numero ISBN du livre que voulez-vous supprimer :");ISBN = scanner.nextInt();
         for (Book book : Books) {
             if (book.NumeroISBN == ISBN) {
                 Books.remove(book);
+                System.out.println("Suppression effectuer avec succes");
+                showBooks();
                 return 1;
             }
         }
-        System.out.println("Suppression effectuer avec succes");
-        showBooks();
         return 0;
     }
 
@@ -96,7 +73,10 @@ public class Library {
                 System.out.println("\tAuteur : "+book.Auteur);
                 System.out.println("\tNumero ISBN : "+book.NumeroISBN);
                 System.out.println("\tDate de publication : "+book.DatePublication);
-                System.out.println("\tEmprunteur : "+book.getEmprunteur().Nom);
+                if(book.getEmprunteur()!=null)
+                {
+                    System.out.println("\tEmprunteur : "+book.getEmprunteur().Nom);
+                }
                 i++;
             }
         }
@@ -112,7 +92,11 @@ public class Library {
             System.out.println("\tAuteur : "+book.Auteur);
             System.out.println("\tNumero ISBN : "+book.NumeroISBN);
             System.out.println("\tDate de publication : "+book.DatePublication);
-            System.out.println("\tEmprunteur : "+book.getEmprunteur().Nom);
+            if(book.getEmprunteur()!=null)
+            {
+                System.out.println("\tEmprunteur : "+book.getEmprunteur().Nom);
+            }
+
         }
         return i;
     }
@@ -122,7 +106,7 @@ public class Library {
         System.out.print("\tNumeroIdentification :"); NumeroIdentification = scanner.nextInt();
         for (Student student : Students) {
             if (student.NumeroIdentification == NumeroIdentification) {
-                System.out.println("Numero d' identifiaction est d' un autre apprenant !! Ressayer..");
+                System.out.println("Numero d' identification est d' un autre apprenant !! Ressayer..");
                 System.out.print("\tNumeroIdentification :"); NumeroIdentification = scanner.nextInt();
             }
         }
@@ -188,5 +172,65 @@ public class Library {
             System.out.println("\tTelephone :"+student.Telephone);
         }
         return i;
+    }
+
+    public void reserveBook()
+    {
+        boolean studentdispo=false;
+        boolean bookdispo=false;
+        Student emprunt=new Student();
+        Book bookBorrow=new Book();
+       do {
+           System.out.println("\tNuméro d' identification d' emprunteur :");NumeroIdentification = scanner.nextInt();
+           for(Student student : Students){
+               if(student.NumeroIdentification == NumeroIdentification){
+                   emprunt=student;
+                   studentdispo=true;
+                   break;
+               }
+           }
+        }while(studentdispo);
+
+        do {
+            System.out.println("\tNuméro ISBN du livre :");NumeroISBN = scanner.nextInt();
+            for(Book book : Books){
+                if(book.NumeroISBN == NumeroISBN){
+                    bookBorrow=book;
+                    bookdispo=true;
+                    break;
+                }
+            }
+        }while(bookdispo);
+        bookBorrow.setEmprunteur(emprunt);
+        emprunt.setBookBorrow(bookBorrow);
+        System.out.println("Livre  "+bookBorrow.Titre+" est Réserver pour l' apprenant "+emprunt.Nom);
+    }
+    public void git 
+    {
+        boolean studentdispo=false;
+        Student emprunt=new Student();
+        Book bookBorrow=new Book();
+
+        do {
+            System.out.println("\tNuméro d' identification d' emprunteur :");NumeroIdentification = scanner.nextInt();
+            for(Student student : Students){
+                if(student.NumeroIdentification == NumeroIdentification){
+                    emprunt=student;
+                    studentdispo=true;
+                    break;
+                }
+            }
+        }while(!studentdispo);
+        int i=0;
+        System.out.println("Liste des livres reservé par l' apprenant "+emprunt.Nom+" : ");
+        for (Book book : emprunt.getBookBorrow())
+        {
+            i++;
+            System.out.println("Livre "+i+" : ");
+            System.out.println("\t\tTitre : "+book.Titre);
+            System.out.println("\t\tAuteur : "+book.Auteur);
+            System.out.println("\t\tNumero ISBN : "+book.NumeroISBN);
+            System.out.println("\t\tDate de publication : "+book.DatePublication);
+        }
     }
 }

@@ -27,11 +27,15 @@ public class Book {
         this.Emprunteur=null;
     }
 
+    public Book() {
+
+    }
+
     public void editionBook(){
         int choix;
         String datePublication;
 
-        System.out.println("Quelle est l information que voulez-vous modifier :\n1-Titre \n2-Auteur \n3-Numero ISBN \n4-Date de publication \n5-Emprunteur");choix = scanner.nextInt();
+        System.out.println("Quelle est l information que voulez-vous modifier :\n1-Titre \n2-Auteur \n3-Numero ISBN \n4-Date de publication");choix = scanner.nextInt();
 
                 switch (choix)
                 {
@@ -52,9 +56,6 @@ public class Book {
                         datePublication= scanner.next();
                         LocalDate date = LocalDate.parse(datePublication, dateFormatter);
                         this.DatePublication=date;
-                        break;
-                    case 5:
-                        library.editEmprunt(this);
                         break;
                     default:
                         System.out.println("CHOIX INVALID !! Ressayer..");
