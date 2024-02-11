@@ -205,7 +205,7 @@ public class Library {
         emprunt.setBookBorrow(bookBorrow);
         System.out.println("Livre  "+bookBorrow.Titre+" est Réserver pour l' apprenant "+emprunt.Nom);
     }
-    public void git 
+    public void listBookForStudent()
     {
         boolean studentdispo=false;
         Student emprunt=new Student();
