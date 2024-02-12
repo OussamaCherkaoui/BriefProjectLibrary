@@ -189,7 +189,7 @@ public class Library {
                    break;
                }
            }
-        }while(studentdispo);
+        }while(!studentdispo);
 
         do {
             System.out.println("\tNuméro ISBN du livre :");NumeroISBN = scanner.nextInt();
@@ -200,7 +200,7 @@ public class Library {
                     break;
                 }
             }
-        }while(bookdispo);
+        }while(!bookdispo);
         bookBorrow.setEmprunteur(emprunt);
         emprunt.setBookBorrow(bookBorrow);
         System.out.println("Livre  "+bookBorrow.Titre+" est Réserver pour l' apprenant "+emprunt.Nom);
